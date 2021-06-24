@@ -11,7 +11,7 @@ Eunit is a php library to make WordPress PHPUnit less painful. Eunit is a collec
     
 * Assertions / Unit helpers:
     * Super Globals
-    * Assert
+    * Assets
     * Hooks
     * Plugin ( Elementor/Plugin-Module architecture )
     * Rest

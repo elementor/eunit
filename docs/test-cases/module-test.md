@@ -46,7 +46,7 @@ class My_Module_Test extends Eunit\Cases\Module_Test {
 ```
 
 Just by doing so our module will be tested and checked if its registered, named and loaded correctly to the `Modules_Manager`.
-But we want to do a little more and test that the module components are registered correctly. 
+But we want to do a little more, and test that the module components are registered correctly. 
 
 ```php
 <?php
