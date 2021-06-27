@@ -61,7 +61,9 @@ class Rest_Route_Test extends Unit_Test {
 	 * test_route_name
 	 */
 	public function test_route_name() {
-		$this->assertTrue( $this->name === $this->route->get_name() );
+		$this->assertTrue( $this->name === $this->route->get_name(),
+			'Test route name is correct for this route'
+		);
 	}
 
 	/**
@@ -69,7 +71,9 @@ class Rest_Route_Test extends Unit_Test {
 	 */
 	public function test_route_methods() {
 		$methods = $this->route->get_methods();
-		$this->assertEqualSets( $this->methods, $methods );
+		$this->assertEqualSets( $this->methods, $methods,
+			'Test allowed methods are correct for this route'
+		);
 	}
 
 	/**
@@ -134,7 +138,10 @@ class Rest_Route_Test extends Unit_Test {
 	 */
 	public function test_register_route() {
 		$routes = $this->server->get_routes();
-		$this->assertArrayHasKey( $this->namespaced_route . '/' . $this->endpoint, $routes );
+		$full_route_name = $this->namespaced_route . '/' . $this->endpoint;
+		$this->assertArrayHasKey( $full_route_name, $routes,
+			'Test that Route: ' . $full_route_name . ' is registered'
+		);
 	}
 
 	/**
@@ -142,7 +149,7 @@ class Rest_Route_Test extends Unit_Test {
 	 */
 	public function test_endpoints() {
 		$the_route = $this->namespaced_route;
-		$routes    = $this->server->get_routes();
+		$routes = $this->server->get_routes();
 		foreach ( $routes as $route => $route_config ) {
 			if ( 0 !== strpos( $the_route, $route ) ) {
 				continue;
