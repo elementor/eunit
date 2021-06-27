@@ -6,19 +6,6 @@ namespace Eunits\Traits;
  */
 trait Assets {
 	/**
-	 * assert_const
-	 *
-	 * @param string $const
-	 * @param mixed $expected
-	 * @param mixed $actual
-	 */
-	public function assert_const( string $const, $expected, $actual ) : void {
-		$this->assertEquals( $actual, $expected,
-			'make sure const ' . $const . ' is not changed!!!'
-		);
-	}
-
-	/**
 	 * assert_script_enqueued
 	 * @param string $handle
 	 */
@@ -34,7 +21,7 @@ trait Assets {
 	 */
 	public function assert_script_not_enqueued( string $handle ) : void {
 		$this->assertFalse( wp_script_is( $handle ),
-			'Test ' . $handle . ' script is enqueued if needed'
+			'Test ' . $handle . ' script is enqueued if not needed'
 		);
 	}
 
@@ -75,7 +62,9 @@ trait Assets {
 	public function assert_localized_script( string $handle, string $variable, bool $return = true ) : array {
 		global $wp_scripts;
 		$data = $wp_scripts->get_data( $handle, 'data' );
-		$this->assertContains( 'var ' . $variable, $data );
+		$this->assertContains( 'var ' . $variable, $data,
+			'Test that ' . $variable . ' var is enqueued'
+		);
 		if ( $return ) {
 			$json_string = '{' . explode( '= {', $data, 2 )[1];
 			$json_string = explode( '"}', $json_string, 2 )[0] . '"}';

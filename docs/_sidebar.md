@@ -9,8 +9,13 @@
 
 - Traits / Assertions
     - [Assets](/traits/assets.md)
-    - [Hooks](hooks.md)
-    - [Globals](assets.md)
+    - [Hooks](/traits/hooks.md)
+    - [Plugin](/traits/plugin.md)
+    - [Remote Request](/traits/hooks.md)
+    - [Rest](/traits/hooks.md)
+
+- Helpers
+    - [Globals](/helpers/globals.md)
     - [Plugin](assets.md)
     - [Remote Request](assets.md)
     - [Rest](assets.md)
