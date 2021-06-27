@@ -33,26 +33,26 @@ trait Hooks {
 
 	/**
 	 * assert_filter_registered
-	 * @param string $action
+	 * @param string $filter
 	 * @param null $callable
 	 * @param int $priority
 	 * @param string $message
 	 */
-	public function assert_filter_registered( string $action = '', $callable = null, int $priority = 10, string $message = '' ) : void {
-		$message = $this->format_filter_message( $action, $callable, $priority, $message );
-		$this->assertEquals( $priority, has_filter( $action, $callable ), $message );
+	public function assert_filter_registered( string $filter = '', $callable = null, int $priority = 10, string $message = '' ) : void {
+		$message = $this->format_filter_message( $filter, $callable, $priority, $message );
+		$this->assertEquals( $priority, has_filter( $filter, $callable ), $message );
 	}
 
 	/**
 	 * assert_filter_not_registered
-	 * @param string $action
+	 * @param string $filter
 	 * @param null $callable
 	 * @param int $priority
 	 * @param string $message
 	 */
-	public function assert_filter_not_registered( string $action = '', $callable = null, int $priority = 10, string $message = '' ) : void {
-		$message = $this->format_filter_message( $action, $callable, $priority, $message, false );
-		$this->assertNotEquals( $priority, has_filter( $action, $callable ), $message );
+	public function assert_filter_not_registered( string $filter = '', $callable = null, int $priority = 10, string $message = '' ) : void {
+		$message = $this->format_filter_message( $filter, $callable, $priority, $message, false );
+		$this->assertNotEquals( $priority, has_filter( $filter, $callable ), $message );
 	}
 
 	/**
@@ -72,19 +72,6 @@ trait Hooks {
 			$callable_name = $callable[1];
 		}
 		$not = $hooked ? '' : 'not ';
-		return ! empty( $message ) ? $message : "Make sure {$callable_name} is {$not}hooked to '{$action}' with priority {$priority}";
-	}
-
-	/**
-	 * assert_const
-	 *
-	 * @param string $const
-	 * @param mixed $expected
-	 * @param mixed $actual
-	 */
-	public function assert_const( string $const, $expected, $actual ) : void {
-		$this->assertEquals( $actual, $expected,
-			'make sure const ' . $const . ' is not changed!!!'
-		);
+		return ! empty( $message ) ? $message : "Test {$callable_name} is {$not}hooked to '{$action}' with priority {$priority}";
 	}
 }

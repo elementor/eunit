@@ -16,15 +16,29 @@ trait Plugin {
 
 	/**
 	 * get_plugin_module
-	 * @param $name
+	 *
+	 * @param string $name
 	 *
 	 * @return Module_Base
 	 */
-	public function get_plugin_module( $name ) {
+	public function get_plugin_module( string $name ) {
 		/**
 		 * @var Module_Base $module
 		 */
 		$module = $this->get_namespace() . '\Modules\\' . $name . '\Module';
 		return $module::instance();
+	}
+
+	/**
+	 * assert_const
+	 *
+	 * @param string $const
+	 * @param mixed $expected
+	 * @param mixed $actual
+	 */
+	public function assert_const( string $const, $expected, $actual ) : void {
+		$this->assertEquals( $actual, $expected,
+			'Test const ' . $const . ' is not changed!!!'
+		);
 	}
 }
