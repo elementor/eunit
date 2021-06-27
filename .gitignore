@@ -1,0 +1,7 @@
+
+vendor/
+wordpress/
+node_modules/
+.idea/
+# ignore log files and databases
+*.log
