@@ -11,19 +11,16 @@
     - [Assets](/traits/assets.md)
     - [Hooks](/traits/hooks.md)
     - [Plugin](/traits/plugin.md)
-    - [Remote Request](/traits/hooks.md)
-    - [Rest](/traits/hooks.md)
+    - [Rest](/traits/rest.md)
+    - [Remote Request](/traits/remote-request.md)
 
 - Helpers
     - [Globals](/helpers/globals.md)
-    - [Plugin](assets.md)
-    - [Remote Request](assets.md)
-    - [Rest](assets.md)
     
 
 - Data Helpers
-    - Options
-    - Meta
+    - [Options](/data/options.md)
+    - [Meta](/data/meta/README.md)
         - User
         - Post
         - Comment

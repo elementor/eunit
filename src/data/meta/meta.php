@@ -11,13 +11,23 @@ class Meta {
 	 */
 	public static $meta_type = '';
 
-	public function delete_bulk( int $object_id, array $keys ) {
+	/**
+	 * delete_bulk
+	 * @param int $object_id
+	 * @param array $keys
+	 */
+	public static function delete_bulk( int $object_id, array $keys ) : void {
 		foreach ( $keys as $key ) {
 			delete_metadata( static::$meta_type, $object_id, $key );
 		}
 	}
 
-	public function set_bulk( string $meta_type, int $object_id, array $meta_data ) {
+	/**
+	 * set_bulk
+	 * @param int $object_id
+	 * @param array $meta_data
+	 */
+	public static function set_bulk( int $object_id, array $meta_data ) : void {
 		foreach ( $meta_data as $key => $value ) {
 			update_metadata( static::$meta_type, $object_id, $key, $value );
 		}
