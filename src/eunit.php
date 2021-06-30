@@ -45,6 +45,9 @@ class Eunit {
 
 	public function __construct() {
 		$this->setup();
+		if ( ! class_exists( '\Eunit\Autoloader' ) ) {
+			require_once( 'autoloader.php' );
+		}
 		$this->autoloader = new Autoloader();
 	}
 

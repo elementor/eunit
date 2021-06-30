@@ -3,7 +3,7 @@ namespace Eunit\Cases;
 
 use Exception;
 use WP_Ajax_UnitTestCase;
-use Eunits\Traits\{
+use Eunit\Traits\{
 	Globals, Hooks, Remote_Request
 };
 use WPAjaxDieContinueException;

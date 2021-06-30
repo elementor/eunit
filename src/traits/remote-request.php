@@ -1,5 +1,5 @@
 <?php
-namespace Eunits\Traits;
+namespace Eunit\Traits;
 
 use WP_Error;
 use WP_Http;

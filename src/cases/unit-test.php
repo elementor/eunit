@@ -1,7 +1,7 @@
 <?php
 namespace Eunit\Cases;
 
-use WP_UnitTest_Factory;
+use \WP_UnitTest_Factory;
 
 /**
  * Class Eunit_Test_Case

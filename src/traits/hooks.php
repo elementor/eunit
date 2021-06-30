@@ -1,5 +1,5 @@
 <?php
-namespace Eunits\Traits;
+namespace Eunit\Traits;
 
 /**
  * Trait Hooks

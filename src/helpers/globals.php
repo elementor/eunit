@@ -1,5 +1,5 @@
 <?php
-namespace Eunits\Helpers;
+namespace Eunit\Helpers;
 
 /**
  * Class Globals

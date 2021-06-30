@@ -5,7 +5,7 @@ namespace Eunit\Cases;
 use WP_REST_Request;
 use WP_REST_Response;
 use WP_REST_Server;
-use Eunits\Traits\{
+use Eunit\Traits\{
 	Plugin, Rest
 };
 /**

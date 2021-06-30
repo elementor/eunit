@@ -1,7 +1,7 @@
 <?php
 namespace Eunit\Cases;
 
-use Eunits\Traits\Plugin;
+use Eunit\Traits\Plugin;
 
 /**
  * Class Module_Test
