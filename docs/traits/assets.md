@@ -23,7 +23,7 @@ function eunit_example_enqueue_script() {
 ##### Example test code
 ```php
 class Test_Class extends \Eunit\Cases\Unit_Test {
-    use \Eunits\Traits\Assets;
+    use \Eunit\Traits\Assets;
     
     function test_eunit_example_enqueue_script() {
         $script_handle = 'my_handle';
@@ -68,7 +68,7 @@ function eunit_example_enqueue_style() {
 ##### Example test code
 ```php
 class Test_Class extends \Eunit\Cases\Unit_Test {
-    use \Eunits\Traits\Assets;
+    use \Eunit\Traits\Assets;
     
     function test_eunit_example_enqueue_style() {
         $script_handle = 'my_handle';
@@ -115,7 +115,7 @@ function eunit_example_localize_script() {
 ##### Example test code
 ```php
 class Test_Class extends \Eunit\Cases\Unit_Test {
-    use \Eunits\Traits\Assets;
+    use \Eunit\Traits\Assets;
     
     function test_eunit_example_localize_script() {
         $script_handle = 'my_handle';

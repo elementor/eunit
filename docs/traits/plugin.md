@@ -14,7 +14,7 @@ A plugin instance
 ##### Example usage
 ```php
 class Test_Class extends \Eunit\Cases\Unit_Test {
-    use \Eunits\Traits\Plugin;
+    use \Eunit\Traits\Plugin;
 
     function test_eunit_example_plugin() {
         $plugin = $this->get_plugin();
@@ -34,7 +34,7 @@ A module instance
 ##### Example usage
 ```php
 class Test_Class extends \Eunit\Cases\Unit_Test {
-    use \Eunits\Traits\Plugin;
+    use \Eunit\Traits\Plugin;
 
     function test_eunit_example_module() {
         $module = $this->get_plugin_module( 'my-test-module' );
@@ -60,7 +60,7 @@ Test const {$const} is not changed!!!
 ##### Example usage
 ```php
 class Test_Class extends \Eunit\Cases\Unit_Test {
-    use \Eunits\Traits\Plugin;
+    use \Eunit\Traits\Plugin;
 
     function test_eunit_example_assert_const() {
         // Lets assume we have a const SomeClass::SPECIAL_ACTION

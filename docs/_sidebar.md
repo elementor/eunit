@@ -21,9 +21,5 @@
 - Data Helpers
     - [Options](/data/options.md)
     - [Meta](/data/meta/README.md)
-        - User
-        - Post
-        - Comment
-        - Term
 
 

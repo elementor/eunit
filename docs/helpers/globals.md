@@ -19,9 +19,9 @@ Used to set A super global variables at bulk
 
 ##### Example usage
 ```php
-use \Eunits\Helpers\Globals; 
 class Test_Class extends \Eunit\Cases\Unit_Test {
-    
+    use \Eunit\Helpers\Globals;
+ 
     function test_eunit_example_set_globals() {
         // lets set $_POST with some data for our test
         $key_value_pair = [

@@ -39,7 +39,7 @@ function eunit_example_add_action() {
 ##### Example test code
 ```php
 class Test_Class extends \Eunit\Cases\Unit_Test {
-    use \Eunits\Traits\Hooks;
+    use \Eunit\Traits\Hooks;
     
     function test_eunit_example_add_action() {
         $action1 = 'action_name';
@@ -119,7 +119,7 @@ function eunit_example_add_filter() {
 ##### Example test code
 ```php
 class Test_Class extends \Eunit\Cases\Unit_Test {
-    use \Eunits\Traits\Hooks;
+    use \Eunit\Traits\Hooks;
     
     function test_eunit_example_add_filter() {
         $filter1 = 'filter_name';
