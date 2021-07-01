@@ -11,7 +11,7 @@ use Eunit\Traits\{
 /**
  * Class Rest_Route
  */
-class Rest_Route_Test extends Unit_Test {
+abstract class Rest_Route_Test extends Unit_Test {
 	use Plugin, Rest;
 	/**
 	 * @var string namespace of route

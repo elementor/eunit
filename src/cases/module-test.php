@@ -6,7 +6,7 @@ use Eunit\Traits\Plugin;
 /**
  * Class Module_Test
  */
-class Module_Test extends Unit_Test {
+abstract class Module_Test extends Unit_Test {
 	use Plugin;
 
 	public $name = '';
@@ -15,6 +15,9 @@ class Module_Test extends Unit_Test {
 	 */
 	public $module;
 
+	/**
+	 * @throws \Exception
+	 */
 	public function setUp(): void {
 		// Support Modules named with more then one word
 		// ex: Kits_Dashboard
@@ -23,7 +26,11 @@ class Module_Test extends Unit_Test {
 			return ucwords( $string );
 		}, $module_class_name );
 		$module_class_name = implode( '', $module_class_name );
-		$this->module = $this->get_plugin_module( $module_class_name );
+		if ( ! empty( $module_class_name ) ) {
+			$this->module = $this->get_plugin_module( $module_class_name );
+		} else {
+			throw new \Exception( 'Module not found' );
+		}
 		parent::setUp();
 	}
 

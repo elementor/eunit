@@ -12,7 +12,7 @@ use WPAjaxDieStopException;
 /**
  * Class Ajax_Test
  */
-class Ajax_Test extends WP_Ajax_UnitTestCase {
+abstract class Ajax_Test extends WP_Ajax_UnitTestCase {
 	use Globals, Hooks, Remote_Request;
 
 	/**
