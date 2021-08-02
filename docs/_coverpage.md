@@ -1,6 +1,6 @@
 ![logo](_media/elementor.png ':size=50x50')
 
-# Eunit <small>0.0.1</small>
+# Eunit <small>0.0.4</small>
 
 >  a PHP library to make WordPress PHPUnit less painful.
 
