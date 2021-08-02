@@ -1,6 +1,7 @@
 {
     "name": "elementor/eunit",
     "description": "WordPress PHPUnit Testing Library",
+    "version": "0.0.4",
     "authors": [
         {
             "name": "ohad",

@@ -13,6 +13,8 @@
     - [Plugin](/traits/plugin.md)
     - [Rest](/traits/rest.md)
     - [Remote Request](/traits/remote-request.md)
+    - [Post Type](/traits/post-type.md)
+    - [Taxonomy](/traits/taxonomy.md)
 
 - Helpers
     - [Globals](/helpers/globals.md)
