@@ -32,7 +32,7 @@ trait Assets {
 	public function assert_style_enqueued( string $handle ) : void {
 		// phpcs:ignore WordPress.WP.EnqueuedResources.NonEnqueuedStylesheet
 		$style_link_tag = "<link rel='stylesheet' id='${handle}-css'";
-		$this->assertContains( $style_link_tag, get_echo( 'wp_print_styles' ),
+		$this->assertStringContainsString( $style_link_tag, get_echo( 'wp_print_styles' ),
 			'Test ' . $handle . ' style is enqueued if needed'
 		);
 	}
@@ -44,7 +44,8 @@ trait Assets {
 	public function assert_style_not_enqueued( string $handle ) : void {
 		// phpcs:ignore WordPress.WP.EnqueuedResources.NonEnqueuedStylesheet
 		$style_link_tag = "<link rel='stylesheet' id='${handle}-css'";
-		$this->assertNotContains( $style_link_tag, get_echo( 'wp_print_styles' ),
+		$actual = get_echo( 'wp_print_styles' );
+		$this->assertStringNotContainsString()( $style_link_tag, $actual,
 			'Test ' . $handle . ' style is not enqueued if not needed'
 		);
 	}
@@ -62,7 +63,7 @@ trait Assets {
 	public function assert_localized_script( string $handle, string $variable, bool $return = true ) : array {
 		global $wp_scripts;
 		$data = $wp_scripts->get_data( $handle, 'data' );
-		$this->assertContains( 'var ' . $variable, $data,
+		$this->assertStringContainsString( 'var ' . $variable, $data,
 			'Test that ' . $variable . ' var is enqueued'
 		);
 		if ( $return ) {
