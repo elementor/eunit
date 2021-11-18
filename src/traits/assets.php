@@ -45,7 +45,7 @@ trait Assets {
 		// phpcs:ignore WordPress.WP.EnqueuedResources.NonEnqueuedStylesheet
 		$style_link_tag = "<link rel='stylesheet' id='${handle}-css'";
 		$actual = get_echo( 'wp_print_styles' );
-		$this->assertStringNotContainsString()( $style_link_tag, $actual,
+		$this->assertStringNotContainsString( $style_link_tag, $actual,
 			'Test ' . $handle . ' style is not enqueued if not needed'
 		);
 	}
