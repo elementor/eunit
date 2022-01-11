@@ -49,10 +49,13 @@ Used test that a const is not changed
 ##### Parameters
 *`$const`*
 (string) (Required) The name of the const
+
 *`$expected`*
 (mixed) (Required) The expected value of the const
+
 *`$actual`*
 (mixed) (Required) The actual value of the const
+
 ##### Failed assertion message
 ```
 Test const {$const} is not changed!!!
