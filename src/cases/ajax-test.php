@@ -4,8 +4,9 @@ namespace Eunit\Cases;
 use Exception;
 use WP_Ajax_UnitTestCase;
 use Eunit\Traits\{
-	Globals, Hooks, Remote_Request
+	Hooks, Remote_Request
 };
+use Eunit\Helpers\Globals;
 use WPAjaxDieContinueException;
 use WPAjaxDieStopException;
 
@@ -34,7 +35,7 @@ abstract class Ajax_Test extends WP_Ajax_UnitTestCase {
 		$this->_last_response = '';
 		$exceptions = [];
 		foreach ( $super_globals as $super_global => $args ) {
-			$this->set_global_vars( $super_global, $args );
+			Globals::set_global_vars( $super_global, $args );
 		}
 		try {
 			$this->_handleAjax( $action );
@@ -46,7 +47,7 @@ abstract class Ajax_Test extends WP_Ajax_UnitTestCase {
 			$exceptions[] = $e->getMessage();
 		}
 		foreach ( $super_globals as $super_global => $args ) {
-			$this->clear_global_vars( $super_global, $args );
+			Globals::clear_global_vars( $super_global, $args );
 		}
 		return [
 			'response' => $this->_last_response,
