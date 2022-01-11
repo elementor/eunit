@@ -47,6 +47,12 @@ abstract class Rest_Route_Test extends Unit_Test {
 	public $name = '';
 
 	/**
+	 * Allows overriding dynamic params in endpoint
+	 * @var string
+	 */
+	public $test_uri = '';
+
+	/**
 	 * setUp
 	 */
 	public function setUp(): void {
@@ -82,24 +88,25 @@ abstract class Rest_Route_Test extends Unit_Test {
 	 * @param bool $authorized
 	 * @param string $method
 	 * @param array $query
+	 * @param null|WP_User|int $user
 	 *
 	 * @return WP_REST_Response
 	 */
-	public function get_response( bool $authorized = false, string $method = 'GET', array $query = [] ) : WP_REST_Response {
-		$uri    = $this->namespaced_route . '/' . $this->endpoint;
+	public function get_response( bool $authorized = false, string $method = 'GET', array $query = [], $user = null ): WP_REST_Response {
+		$uri = $this->test_url ?? ( $this->namespaced_route . '/' . $this->endpoint );
 		$method = strtoupper( $method );
-		if ( $query && 'GET' === $method ) {
+		if ( ! empty( $query ) && 'GET' === $method ) {
 			$uri = add_query_arg( $query, $uri );
 		}
 
 		$request = new WP_REST_Request( $method, $uri );
 
-		if ( 'POST' === $method ) {
+		if ( ! empty( $query ) && in_array( $method, [ 'POST', 'PUT', 'PATCH' ] ) ) {
 			$request->set_body_params( $query );
 		}
 
 		if ( $authorized ) {
-			wp_set_current_user( $this->editor );
+			wp_set_current_user( $user ?? $this->editor );
 			$request->set_header( 'X-WP-NONCE', wp_create_nonce( 'wp_rest' ) );
 		} else {
 			wp_set_current_user( 0 );
@@ -125,10 +132,11 @@ abstract class Rest_Route_Test extends Unit_Test {
 	 *
 	 * @param string $method
 	 * @param mixed|bool|array $query
+	 * @param null|WP_User|int $user
 	 *
 	 * @return WP_REST_Response
 	 */
-	public function dispatch_authorized( string $method = 'GET', $query = null ) : WP_REST_Response {
+	public function dispatch_authorized( string $method = 'GET', $query = null, $user = null ): WP_REST_Response {
 		return $this->get_response( true, $method, $query );
 	}
 
