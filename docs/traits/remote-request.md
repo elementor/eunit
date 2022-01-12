@@ -31,7 +31,7 @@ Used to setup an WP_Error mock response for `wp_remote_*` function
 Used to cleanup a mocked response for `wp_remote_*` function set by any of the above methods, should be used at `tearDown`
 
 ### Example
-Lets say we have an API wrapper class to fetch Chuck Norris **Facts**
+Let's say we have an API wrapper class to fetch Chuck Norris **Facts**
 ```php
 <?php
 namespace ElementorMainNameSpace\Modules\MyTestModule\Classes;

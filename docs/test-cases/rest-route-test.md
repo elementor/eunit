@@ -140,16 +140,128 @@ class Info_Route_Test extends Eunit\Cases\Rest_Route_Test {
 	}
 }
 ```
+## Testing dynamic endpoint routes
+In the case of testing a Route which declares a dynamic endpoint ex: `user/(?P<id>[\d]+)` which expects an integer to be used as an `id` param the provided methods (_dispatch_unauthorized_ and _dispatch_authorized_) will actually dispatch the request to the dynamic endpoint without phrasing meaning instead of using `user/12` it will use `user/(?P<id>[\d]+)`. This will always resolve to `404 Not found`. In order to get around it we can set the actual route and endpoint we want before dispatching the request using the `$test_url` property of `Rest_Route_Test` class, ex:
+
+```php
+class User_Info_Route_Test extends Eunit\Cases\Rest_Route_Test {
+    public $namespace = 'api/v1';
+    public $endpoint = 'user/(?P<id>[\d]+)';
+	public $name = 'user-info';
+	public $methods = [ \WP_REST_Server::READABLE ];
+	
+	/**
+	 * setUp
+	 */
+	public function setUp() : void {
+		parent::setUp();
+		// We must setup $this->route with an actual instance of the route class we are testing
+		// for example, this is assuming you have a module called backend and the routes are registered as components
+		$this->route = $this->get_plugin_module( 'backend' )->get_component( $this->name );
+	}
+
+    /**
+     * test_get
+     */
+	public function test_get() {
+	    // Call the route as an unauthorized user without setting the dynamic endpoint
+		// $unauthorized_response = $this->dispatch_unauthorized();
+		// this will always respond with `404` because there is no real route at api/v1/user/(?P<id>[\d]+)
+		
+		// so we need to set the actual test route, luckily we can do that very easy
+		// say we have a user with the id of 23 (Jordan fan here), so:
+		$this->test_url = $this->namespaced_route . '/user/23';
+        // so at this point every request should be dispatched to our test_url 
+
+		$unauthorized_response = $this->dispatch_unauthorized();
+		// run assertions using the provided methods from \Eunit\Traits\Rest
+		$this->assert_response_status( 401, $unauthorized_response );
+		$this->assert_response_code( 'rest_forbidden', $unauthorized_response );
+		$this->assert_response_data( [
+			'code' => 'rest_forbidden',
+			'message' => 'Sorry, you are not allowed to do that.',
+			'data' => [ 'status' => 401 ],
+		], $unauthorized_response );
+
+        // Now call the route as an authorized user
+		$authorized_response = $this->dispatch_authorized();
+		$this->assert_response_status( 200, $authorized_response );
+		$this->assert_response_data( [
+			'firstName' => 'Michael',
+			'lastName' => 'Jordan',
+			'nickName' => 'M.J',
+		], $authorized_response );
+		// Done!
+		
+		// just make sure to clean up after yourself
+		$this->test_url = '';
+	}
+}
+```
+
+## Testing authorized request with different users and capabilities
+When dispatching an authorized request using `dispatch_authorized`, unless defined otherwise the `Rest_Route_Test` class will use a user with the role of **editor**.
+In some cases you need a specific user, user role or a user with a specific capability so again, luckily we can do that very easy, we can actually pass the `WP_User` object or the ID of the user we want to authenticate, ex:
+```php
+class User_Info_Route_Test extends Eunit\Cases\Rest_Route_Test {
+    public $namespace = 'api/v1';
+    public $endpoint = 'user/(?P<id>[\d]+)';
+	public $name = 'user-info';
+	public $methods = [ \WP_REST_Server::READABLE ];
+	
+	/**
+	 * setUp
+	 */
+	public function setUp() : void {
+		parent::setUp();
+		// We must setup $this->route with an actual instance of the route class we are testing
+		// for example, this is assuming you have a module called backend and the routes are registered as components
+		$this->route = $this->get_plugin_module( 'backend' )->get_component( $this->name );
+	}
+
+    /**
+     * test_get
+     */
+	public function test_get() {
+	    // setup the user as we want
+	    $admin_user = self::factory()->user->create( [
+			'role' => 'administrator',
+		] )
+        // Now call the route as an authorized user
+		$authorized_response = $this->dispatch_authorized( 'GET', null, $admin_user );
+		$this->assert_response_status( 200, $authorized_response );
+		// Done!
+	}
+}
+```
+
 ## Available Methods:
 
 ### dispatch_unauthorized
 ##### Description
 Used to test a route as unauthorized user
+##### Parameters
+*`$method`*
+(string) (Optional) The request method to dispatch defaults to `GET`
+
+*`$query`*
+(array) (Optional) An array of query/body params to add to the request.
+
 ##### Example
 See [Above example](test-cases/rest-route-test?id=example-full-route-test)
 
 ### dispatch_authorized
 ##### Description
 Used to test a route as an authorized user
+##### Parameters
+*`$method`*
+(string) (Optional) The request method to dispatch defaults to `GET`
+
+*`$query`*
+(array) (Optional) An array of query/body params to add to the request.
+
+*`$user`*
+(mixed|WP_user|Int) (Optional) The desired user to authenticate for the request, defaults to editor role user. since (0.0.7)
 ##### Example
 See [Above example](test-cases/rest-route-test?id=example-full-route-test)
+
