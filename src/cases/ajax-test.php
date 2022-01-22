@@ -14,7 +14,7 @@ use WPAjaxDieStopException;
  * Class Ajax_Test
  */
 abstract class Ajax_Test extends WP_Ajax_UnitTestCase {
-	use Globals, Hooks, Remote_Request;
+	use Hooks, Remote_Request;
 
 	/**
 	 * setup
