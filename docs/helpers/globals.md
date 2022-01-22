@@ -1,6 +1,6 @@
 # Global Helpers
 
-`Eunit\Traits\Globals` Trait is to be used in your test suite class to allow easier setting and cleanup of super globals.
+`Eunit\Helpers\Globals` Class is to be used in your test suite class to allow easier setting and cleanup of super globals.
 
 !> This is subject to change
 
