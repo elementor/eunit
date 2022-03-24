@@ -19,7 +19,7 @@ abstract class Ajax_Test extends WP_Ajax_UnitTestCase {
 	/**
 	 * setup
 	 */
-	public function setup() {
+	public function setup(): void {
 		parent::setup();
 	}
 
