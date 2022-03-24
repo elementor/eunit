@@ -6,6 +6,9 @@
     - [Module Test](/test-cases/module-test.md)
     - [Ajax Test](/test-cases/ajax-test.md)
     - [Rest Route Test](/test-cases/rest-route-test.md)
+    - Elementor
+      - [Widget Test](/test-cases/elementor/widget-test.md)
+      - [Dynamic Tag Test](/test-cases/elementor/dynamic-tag-test.md)
 
 - Traits / Assertions
     - [Assets](/traits/assets.md)
@@ -18,7 +21,9 @@
 
 - Helpers
     - [Globals](/helpers/globals.md)
-    
+
+- Mocks
+    - [Elementor](/mocks/elementor.md)
 
 - Data Helpers
     - [Options](/data/options.md)

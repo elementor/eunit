@@ -7,6 +7,9 @@ Eunit is a php library to make WordPress PHPUnit less painful. Eunit is a collec
     * Module Test ( Elementor/Plugin-Module architecture )
     * Ajax Test
     * Rest Route
+    * Elementor
+      * Widget
+      * Dynamic Tag
     
     
 * Assertions / Unit helpers:
@@ -22,3 +25,5 @@ Eunit is a php library to make WordPress PHPUnit less painful. Eunit is a collec
     * Options
     * Meta
 
+* Mocks
+    * Elementor
