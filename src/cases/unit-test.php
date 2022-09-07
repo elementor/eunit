@@ -26,7 +26,7 @@ abstract class Unit_Test extends \WP_UnitTestCase {
 	/**
 	 * @var WP_UnitTest_Factory|null
 	 */
-	private $factory;
+	protected $factory;
 
 	public function get_namespace() {
 		return getenv( 'EUNIT_TEST_CASE_NAMESPACE' );
